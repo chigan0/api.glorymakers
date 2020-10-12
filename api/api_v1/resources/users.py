@@ -4,6 +4,7 @@ from app import app
 from settings import Config
 from models.models import Users,db
 from utils.func import esn,obpasw,gecktoken
+import uuid
 
 
 class Logan(Resource):
@@ -19,11 +20,18 @@ class Logan(Resource):
 		gen_hassh = obpasw(data['password'],Config.SECRET_KEY)
 		
 		if Users.query.filter_by(email=data['email']).first() == None:
-			new_user = Users(email=data['email'],login=data['login'],password_hash=gen_hassh)
+			new_user = Users(public_id=str(uuid.uuid4()),email=data['email'],login=data['login'],password_hash=gen_hassh)
+			
 			db.session.add(new_user)
 			db.session.commit()
 			token = new_user.generate_confirmation_token()
+
+			print(new_user.public_id)
+
+			db.session.rollback()
+			
 			esn(render_template,app,text='Confirm Your Email',name=data['login'],email=data['email'],token=token,url='http://127.0.0.1:5000/v1/login/confirm/')
+			
 			return {"message":'Confirm your email to complete registration'},200
 		
 		return {"message":'User with identical mail is already registered'},203

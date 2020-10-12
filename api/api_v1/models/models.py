@@ -2,12 +2,11 @@ from app import db
 from settings import Config
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from datetime import datetime
-import uuid
 
 class Users(db.Model):
 	__tablename__='user'
 	id = db.Column(db.Integer,primary_key=True,nullable=False,unique=True)
-	public_id = db.Column(db.String(50),unique=True,default=str(uuid.uuid4()))
+	public_id = db.Column(db.String,unique=True)
 	email = db.Column(db.String(120),unique=True,nullable=False)
 	login = db.Column(db.String(120),unique=True,nullable=False)
 	password_hash = db.Column(db.String(356),nullable=False)
@@ -58,7 +57,7 @@ class Games(db.Model):
 	__tablename__='games'
 	id = db.Column(db.Integer,primary_key=True,nullable=False,unique=True)
 	games = db.Column(db.String(64),nullable=False,unique=True)
-	public_id = db.Column(db.String,default=str(uuid.uuid4()))
+	public_id = db.Column(db.String,unique=True)
 	create_date = db.Column(db.String,default=datetime.utcnow())
 	cate = db.relationship('PlayerAnnouncements',backref='cate_name',lazy='dynamic')
 
@@ -68,11 +67,12 @@ class Games(db.Model):
 class PlayerAnnouncements(db.Model):
 	__tablename__='announcements'
 	id = db.Column(db.Integer,primary_key=True,nullable=False,unique=True)
-	public_id = db.Column(db.String(50),unique=True,default=str(uuid.uuid4()))
+	public_id = db.Column(db.String,unique=True)
 	topic = db.Column(db.String(64),unique=True,nullable=False)
 	author = db.Column(db.String(54),default='автор не указан')
+	body = db.Column(db.String(5000),default='отсутствует')
 	pub_date = db.Column(db.String,default=datetime.utcnow())
-	cate_id = db.Column(db.Integer, db.ForeignKey('games.public_id'))
+	cate_id = db.Column(db.String, db.ForeignKey('games.public_id'))
 	mess = db.relationship('MessageForumUser',backref='forum_mes',lazy='dynamic')
 	post_rating = db.Column(db.Integer,default=0)
 
@@ -90,13 +90,13 @@ class MessageForumUser(db.Model):
 	id = db.Column(db.Integer,primary_key=True,nullable=False,unique=True)
 	user_name = db.Column(db.String(120),nullable=False,default='Анонимно')
 	message_user = db.Column(db.String(568))
-	post_id = db.Column(db.Integer,db.ForeignKey('announcements.public_id'))
+	post_id = db.Column(db.String,db.ForeignKey('announcements.public_id'))
 	send_date = db.Column(db.String,default=datetime.utcnow())
 
 
 class PostRaiting(db.Model):
 	id = db.Column(db.Integer,primary_key=True,nullable=False,unique=True)
-	post_id = db.Column(db.Integer,db.ForeignKey('announcements.public_id'))
+	post_id = db.Column(db.String,db.ForeignKey('announcements.public_id'))
 	user_like = db.Column(db.String(120),nullable=False,default='Анонимно')
 
 class OnlineUsers(db.Model):

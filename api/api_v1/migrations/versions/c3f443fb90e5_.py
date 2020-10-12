@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 39ad583850e7
+Revision ID: c3f443fb90e5
 Revises: 
-Create Date: 2020-10-09 18:01:02.869518
+Create Date: 2020-10-12 10:43:32.491428
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '39ad583850e7'
+revision = 'c3f443fb90e5'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -25,7 +25,8 @@ def upgrade():
     sa.Column('create_date', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('games'),
-    sa.UniqueConstraint('id')
+    sa.UniqueConstraint('id'),
+    sa.UniqueConstraint('public_id')
     )
     op.create_table('message_user',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -41,7 +42,7 @@ def upgrade():
     )
     op.create_table('user',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('public_id', sa.String(length=50), nullable=True),
+    sa.Column('public_id', sa.String(), nullable=True),
     sa.Column('email', sa.String(length=120), nullable=False),
     sa.Column('login', sa.String(length=120), nullable=False),
     sa.Column('password_hash', sa.String(length=356), nullable=False),
@@ -59,11 +60,12 @@ def upgrade():
     )
     op.create_table('announcements',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('public_id', sa.String(length=50), nullable=True),
+    sa.Column('public_id', sa.String(), nullable=True),
     sa.Column('topic', sa.String(length=64), nullable=False),
     sa.Column('author', sa.String(length=54), nullable=True),
+    sa.Column('body', sa.String(length=5000), nullable=True),
     sa.Column('pub_date', sa.String(), nullable=True),
-    sa.Column('cate_id', sa.Integer(), nullable=True),
+    sa.Column('cate_id', sa.String(), nullable=True),
     sa.Column('post_rating', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['cate_id'], ['games.public_id'], ),
     sa.PrimaryKeyConstraint('id'),
@@ -75,7 +77,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_name', sa.String(length=120), nullable=False),
     sa.Column('message_user', sa.String(length=568), nullable=True),
-    sa.Column('post_id', sa.Integer(), nullable=True),
+    sa.Column('post_id', sa.String(), nullable=True),
     sa.Column('send_date', sa.String(), nullable=True),
     sa.ForeignKeyConstraint(['post_id'], ['announcements.public_id'], ),
     sa.PrimaryKeyConstraint('id'),
@@ -83,7 +85,7 @@ def upgrade():
     )
     op.create_table('post_raiting',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('post_id', sa.Integer(), nullable=True),
+    sa.Column('post_id', sa.String(), nullable=True),
     sa.Column('user_like', sa.String(length=120), nullable=False),
     sa.ForeignKeyConstraint(['post_id'], ['announcements.public_id'], ),
     sa.PrimaryKeyConstraint('id'),

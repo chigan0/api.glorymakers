@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,got_request_exception
 from flask_restful import Api,Resource,reqparse
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -13,7 +13,7 @@ import logging
 app = Flask(__name__)
 app.config.from_object(Config)
 handler = RotatingFileHandler(app.config['LOGFILE'],maxBytes=1000000,backupCount=1)
-api= Api(app)
+api= Api(app,catch_all_404s=True,errors=Config.ERORS)
 db = SQLAlchemy(app)
 migrate = Migrate(app,db)
 cors = CORS(app, resources={r"/v1/*": {"origins": "*"}})

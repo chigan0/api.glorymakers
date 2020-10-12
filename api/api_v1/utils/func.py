@@ -23,17 +23,26 @@ def gecktoken(secret_key,status,**kwargs):
 	import jwt
 
 	if status == 1:
-		public_id,login,password_hash = kwargs['public_id'],kwargs['login'],kwargs['password_hash']
-		token = jwt.encode({
-			'public_id':public_id,
-			'login':login,
-			'password_hash':password_hash},
+		token = jwt.encode(kwargs,
 			secret_key,algorithm="HS256")
 
 		return token.decode('utf-8')
+	
 	elif status == 0:
 		try:
 			res = jwt.decode(kwargs['token'],secret_key, algorithms=['HS256'])
 			return res
 		except:
 			return False
+
+'''
+
+		public_id,email,login,password_hash,is_staff,is_superuser,is_level = 
+			kwargs['public_id'],
+			kwargs['login'],
+			kwargs['email'],
+			kwargs['password_hash'],
+			kwargs['is_staff'],
+			kwargs['is_superuser'],
+			kwargs['is_level']
+'''

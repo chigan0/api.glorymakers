@@ -16,7 +16,16 @@ def authorization():
 				{
 					'status':'200',
 					'login':se.public_id,
-					'token':gecktoken(Config.SECRET_KEY,1,public_id=se.public_id,login=se.login,password_hash=hasp),
+					'token':gecktoken(
+								Config.SECRET_KEY,
+								1,
+								public_id=se.public_id,
+								email=se.email,
+								login=se.login,
+								password_hash=hasp,
+								is_staff=se.is_staff,
+								is_superuser=se.is_superuser,
+								is_level=se.is_level,),
 				}),200
 	
 	return jsonify(
@@ -45,4 +54,7 @@ def checktoken():
 @app.route('/v1/test/',methods=['POST','GET'])
 def tees():
 	print(request)
-	return jsonify({'message':'dawdawda'})
+	return jsonify({'message':'Hello VueJS'})
+
+def log_exception(sender, exception, **extra):
+	sender.logger.debug('Got exception during processing: %s', exception)

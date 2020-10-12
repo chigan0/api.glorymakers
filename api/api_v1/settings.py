@@ -1,6 +1,5 @@
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))+'/models/'
-print(basedir)
 
 class Config(object):
 	DEBUG = True
@@ -20,6 +19,17 @@ class Config(object):
 	MAIL_USE_TLS = True
 	MAIL_USERNAME = 'naz.abylai50@gmail.com'
 	MAIL_PASSWORD = 'noyldtmuquyduzia'
+	ERORS = {
+		'UserAlreadyExistsError': {
+			'message': "A user with that username already exists.",
+			'status': 404,
+		},
+		'ResourceDoesNotExist': {
+			'message': "A resource with that ID no longer exists.",
+			'status': 500,
+			'extra': "Any extra information you want.",
+		},
+	}
 
 class DevelopmentConfig(Config):
 	pass
