@@ -1,17 +1,19 @@
 import os
-basedir = os.path.abspath(os.path.dirname(__file__))+'/models/'
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config(object):
 	DEBUG = True
 	ENV = 'venv'
 	CORS_HEADERS = 'Content-Type'
 	SECRET_KEY = '975c3bb12c5b33353fe3436c0681cc568f21bbd8c86a7884b6b69497b564ce31'
-	SQLALCHEMY_DATABASE_URI = 'sqlite:///'+os.path.join(basedir,'ted.db')
+	SQLALCHEMY_DATABASE_URI = 'sqlite:///'+os.path.join(f"{basedir}/models/",'ted.db')
 	SQLALCHEMY_BINDS = {
-		'usersstat':'sqlite:///'+os.path.join(basedir,'users.db'),
+		'usersstat':'sqlite:///'+os.path.join(f"{basedir}/models/",'users.db'),
 	}
 	MONGO_URI = 'mongodb://localhost:27017/test'
-	LOGFILE = 'logs/v1.log'
+	LOGFILE = f"{basedir}/logs/v1.log"
+	IMAGE_UPLOADS = f"{basedir}/models/images/user_profile_images/"
+	ALLOWED_EXTENSIONS = {'txt','pdf','png','img','jpg','jpeg','gif'}
 	
 	SQLALCHEMY_TRACK_MODIFICATIONS = False 
 	MAIL_SERVER = 'smtp.googlemail.com'
@@ -19,6 +21,7 @@ class Config(object):
 	MAIL_USE_TLS = True
 	MAIL_USERNAME = 'naz.abylai50@gmail.com'
 	MAIL_PASSWORD = 'noyldtmuquyduzia'
+	MAIL_DEBUG = False
 	ERORS = {
 		'UserAlreadyExistsError': {
 			'message': "A user with that username already exists.",

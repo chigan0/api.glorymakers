@@ -25,7 +25,6 @@ class Chat(Namespace):
 			disconnect()
 
 	def on_add_users(self,args1,**kwargs):
-		print('hell')
 		if args1.get('token') != None:
 			a = gecktoken(Config.SECRET_KEY,0,token=args1.get('token'))
 			if a != False:

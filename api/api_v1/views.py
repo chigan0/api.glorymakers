@@ -3,7 +3,8 @@ from app import app
 from settings import Config
 from models.models import Users,db,Games,PlayerAnnouncements
 from utils.func import esn,obpasw,gecktoken
-import threading
+from werkzeug.utils import secure_filename
+import os
 
 def authorization():
 	data = request.get_json()
@@ -17,7 +18,7 @@ def authorization():
 				return jsonify(
 					{
 						'status':'200',
-						'login':se.public_id,
+						'public_id':se.public_id,
 						'token':gecktoken(
 									Config.SECRET_KEY,
 									1,
@@ -55,4 +56,11 @@ def checktoken():
 
 def tees():
 	print(request.get_json())
+	
+	print('---------------------------')
+	
+	file = request.files['file']
+	filename = secure_filename(file.filename)
+	file.save(os.path.join(app.config['IMAGE_UPLOADS'], filename))
+	
 	return jsonify({'message':'Hello VueJS'})

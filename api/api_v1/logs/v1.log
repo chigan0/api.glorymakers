@@ -2166,3 +2166,34 @@ werkzeug.exceptions.InternalServerError: 500 Internal Server Error: The server e
 2020-10-16 13:28:38,596 DEBUG: Got exception during processing: get() missing 1 required positional argument: 'token' [in C:\api.glorymakers-main\api\api_v1\utils\func.py:49]
 2020-10-16 15:27:19,018 DEBUG: Got exception during processing: 'token' [in C:\api.glorymakers-main\api\api_v1\utils\func.py:49]
 2020-10-16 15:27:59,011 DEBUG: Got exception during processing: The view function did not return a valid response. The function either returned None or ended without a return statement. [in C:\api.glorymakers-main\api\api_v1\utils\func.py:49]
+2020-10-21 22:30:22,912 DEBUG: Got exception during processing: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. [in C:\api.glorymakers-main\api\api_v1\utils\func.py:49]
+2020-10-21 22:30:26,848 DEBUG: Got exception during processing: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. [in C:\api.glorymakers-main\api\api_v1\utils\func.py:49]
+2020-10-21 22:30:28,915 DEBUG: Got exception during processing: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. [in C:\api.glorymakers-main\api\api_v1\utils\func.py:49]
+2020-10-21 22:35:38,225 DEBUG: Got exception during processing: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. [in C:\api.glorymakers-main\api\api_v1\utils\func.py:49]
+2020-10-22 03:54:18,225 DEBUG: Got exception during processing: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. [in C:\api.glorymakers-main\api\api_v1\utils\func.py:49]
+2020-10-22 03:55:55,416 DEBUG: Got exception during processing: 400 Bad Request: The browser (or proxy) sent a request that this server could not understand.
+KeyError: 'files' [in C:\api.glorymakers-main\api\api_v1\utils\func.py:49]
+2020-10-22 03:56:01,021 DEBUG: Got exception during processing: 400 Bad Request: The browser (or proxy) sent a request that this server could not understand.
+KeyError: 'files' [in C:\api.glorymakers-main\api\api_v1\utils\func.py:49]
+2020-10-22 04:53:49,709 DEBUG: Got exception during processing: 'ImmutableMultiDict' object has no attribute 'filename' [in C:\api.glorymakers-main\api\api_v1\utils\func.py:49]
+2020-10-22 04:53:57,670 DEBUG: Got exception during processing: 'ImmutableMultiDict' object has no attribute 'file' [in C:\api.glorymakers-main\api\api_v1\utils\func.py:49]
+2020-10-22 05:33:40,953 DEBUG: Got exception during processing: 'str' object has no attribute 'filename' [in C:\api.glorymakers-main\api\api_v1\utils\func.py:49]
+2020-10-22 05:36:26,964 DEBUG: Got exception during processing: 'str' object has no attribute 'save' [in C:\api.glorymakers-main\api\api_v1\utils\func.py:49]
+2020-10-22 05:37:21,271 DEBUG: Got exception during processing: You tried to access the file "file" in the request.files dictionary but it does not exist.  The mimetype for the request is "application/x-www-form-urlencoded" instead of "multipart/form-data" which means that no file contents were transmitted.  To fix this error you should provide enctype="multipart/form-data" in your form.
+
+The browser instead transmitted some file names. This was submitted: "55d28737cdb167ad4f37251b6f4b2104.jpg" [in C:\api.glorymakers-main\api\api_v1\utils\func.py:49]
+2020-10-22 05:37:44,347 DEBUG: Got exception during processing: You tried to access the file "file" in the request.files dictionary but it does not exist.  The mimetype for the request is "application/x-www-form-urlencoded" instead of "multipart/form-data" which means that no file contents were transmitted.  To fix this error you should provide enctype="multipart/form-data" in your form.
+
+The browser instead transmitted some file names. This was submitted: "55d28737cdb167ad4f37251b6f4b2104.jpg" [in C:\api.glorymakers-main\api\api_v1\utils\func.py:49]
+2020-10-22 05:40:06,248 DEBUG: Got exception during processing: name 'os' is not defined [in C:\api.glorymakers-main\api\api_v1\utils\func.py:49]
+2020-10-22 08:35:41,303 DEBUG: Got exception during processing: (sqlite3.OperationalError) unable to open database file
+(Background on this error at: http://sqlalche.me/e/13/e3q8) [in C:\api.glorymakers-main\api\api_v1\utils\func.py:49]
+2020-10-22 08:35:57,412 DEBUG: Got exception during processing: (sqlite3.OperationalError) unable to open database file
+(Background on this error at: http://sqlalche.me/e/13/e3q8) [in C:\api.glorymakers-main\api\api_v1\utils\func.py:49]
+2020-10-22 08:36:18,509 DEBUG: Got exception during processing: (sqlite3.OperationalError) unable to open database file
+(Background on this error at: http://sqlalche.me/e/13/e3q8) [in C:\api.glorymakers-main\api\api_v1\utils\func.py:49]
+2020-10-22 08:36:54,399 DEBUG: Got exception during processing: (sqlite3.OperationalError) unable to open database file
+(Background on this error at: http://sqlalche.me/e/13/e3q8) [in C:\api.glorymakers-main\api\api_v1\utils\func.py:49]
+2020-10-22 08:37:23,198 DEBUG: Got exception during processing: (sqlite3.OperationalError) unable to open database file
+(Background on this error at: http://sqlalche.me/e/13/e3q8) [in C:\api.glorymakers-main\api\api_v1\utils\func.py:49]
+2020-10-22 11:49:03,134 DEBUG: Got exception during processing: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. [in C:\api.glorymakers-main\api\api_v1\utils\func.py:49]
